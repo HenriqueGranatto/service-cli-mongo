@@ -1,9 +1,15 @@
   
 module.exports = (toolbox) =>
 {
-    if(toolbox.parameters.command == 'add:mongo')
+    switch(toolbox.parameters.command)
     {
-        toolbox.validate = validateAddMongo
+        case 'add:mongo':
+            toolbox.validate = validateAddMongo
+        break;
+
+        case 'mongo:create':
+            toolbox.validate = validateMongoCreate
+        break;
     }
 }
 
@@ -32,6 +38,23 @@ const validateAddMongo = (toolbox) =>
 
     toolbox.print.success("- Solicitação aceita")
     toolbox.print.success("- Iniciando procedimento de instalação do módulo")
+
+    return module
+}
+
+const validateMongoCreate = (toolbox) =>
+{
+    toolbox.print.info("###################################################")
+    toolbox.print.info("##                  Iniciando                    ##")
+    toolbox.print.info("###################################################")
+    toolbox.print.info("- Analisando solicitação")
+
+    if(typeof toolbox.parameters.options.subdomain != "string")
+    {
+        toolbox.print.error('- Comando incorreto: É obrigatório o envio de um componente válido (model) ')
+        toolbox.print.info(`Exemplo: service-cli mongo:create --subdomain subdomain01, subdomain02`)
+        process.exit(0)
+    }
 
     return module
 }

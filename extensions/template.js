@@ -1,11 +1,18 @@
 module.exports = (toolbox) =>
 {
-    if(toolbox.parameters.command == 'add:mongo')
+    switch(toolbox.parameters.command)
     {
-        toolbox.readTemplate = readTemplate
-        toolbox.createModule = createModule
-        toolbox.createSchemas = createSchemas
+        case 'add:mongo':
+            toolbox.readTemplate = readTemplate
+            toolbox.createModule = createModule
+            toolbox.createSchemas = createSchemas
+        break;
+
+        case 'mongo:create':
+            toolbox.createModel = createModel
+        break;
     }
+
 }
 
 const readTemplate = async (toolbox, module) =>
@@ -69,6 +76,33 @@ const createSchemas = (toolbox, schemas) =>
             props: schemaProps,
             template: `schemas/Schema.ejs`,
             target: `mongo/schemas/${schemaProps.name}.js`
+        })
+    })
+}
+
+const createModel = (toolbox, options) =>
+{
+    const subdomains = options.subdomain.split(' ')
+    let models = options.model ? options.model.split(' ') : []
+
+    subdomains.map(async (subdomain) => {
+        const modelProps = 
+        {
+            mongoModels: ""
+        }
+
+        if(models.length > 0)
+        {
+            models = models.map(model => `${model.charAt(0).toUpperCase()}${model.slice(1)}`)
+            modelProps.mongoModels = `const {${models.toString()}} = require('../../mongo/models')`
+        }
+
+        toolbox.print.success(`Subdomínio: ${subdomain}`)
+
+        await toolbox.template.generate({
+            props: modelProps,
+            template: `domain/Model.ejs`,
+            target: `domain/${subdomain}/Model.js`
         })
     })
 }
