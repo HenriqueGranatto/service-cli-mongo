@@ -1,0 +1,8 @@
+'use strict'
+
+const mongoose = require('mongoose')
+const Schema = mongoose.Schema
+
+const <%- props.name %>Schema = new Schema(<%- props.schema %>);
+
+module.exports = mongoose.model('<%- props.name %>', <%- props.name %>Schema)
