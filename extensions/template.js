@@ -94,7 +94,7 @@ const createModel = (toolbox, options) =>
         if(models.length > 0)
         {
             models = models.map(model => `${model.charAt(0).toUpperCase()}${model.slice(1)}`)
-            modelProps.mongoModels = `const {${models.toString()}} = require('../../mongo/models')`
+            modelProps.mongoModels = `const {${models.toString()}} = require('../../mongo/models')\n`
         }
 
         toolbox.print.success(`Subdomínio: ${subdomain}`)
