@@ -55,6 +55,4 @@ const validateMongoCreate = (toolbox) =>
         toolbox.print.info(`Exemplo: service-cli mongo:create --subdomain subdomain01, subdomain02`)
         process.exit(0)
     }
-
-    return module
 }
