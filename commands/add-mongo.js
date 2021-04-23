@@ -20,8 +20,8 @@ const command = {
       toolbox.print.info("###################################################")
       toolbox.print.info("##         Executando template do módulo         ##")
       toolbox.print.info("###################################################")
-      const schemas = await toolbox.readTemplate(toolbox, module)
-      await toolbox.createSchemas(toolbox, schemas)
+      const data = await toolbox.readTemplate(toolbox, module)
+      await toolbox.createSchemas(toolbox, data)
 
       toolbox.print.info("\n")
       toolbox.print.success(`Módulo ${module.name} adicionado com sucesso!`)

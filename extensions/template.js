@@ -29,9 +29,9 @@ const readTemplate = async (toolbox, module) =>
     toolbox.print.success("- Template encontrado")
     module.template.data = JSON.parse(module.template.data)
 
-    const schemas = module.template.data
+    const data = module.template.data
 
-    return schemas
+    return data
 }
 
 const createModule = async (toolbox) =>
