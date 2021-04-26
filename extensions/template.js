@@ -42,12 +42,6 @@ const createModule = async (toolbox) =>
         target: `mongo/app.js`,
     })
 
-    toolbox.print.success("- Adicionando: mongo/models.js")
-    await toolbox.template.generate({
-        template: 'models.js',
-        target: `mongo/models.js`,
-    })
-
     toolbox.print.success("- Adicionando: configurações do módulo no arquivo .env")
     let env = `# Configurações do Mongo\n`
     env += `MONGO_USER=\n`
