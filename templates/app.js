@@ -11,11 +11,11 @@ mongoose.connect(`mongodb://${process.env.MONGO_USER}:${process.env.MONGO_PASSWO
  */
 const registerSchemas = () =>
 {
-    const schemas = fs.readdirSync(path.join("./", "mongo", "schemas"))
+    const schemas = fs.readdirSync(path.join(__dirname, "schemas"))
 
     schemas.map(schema => {
         const schemaName = schema.split(".js")[0]
-        Models[schemaName] = require(path.join(__dirname, "schemas", schema))
+        Models[schemaName] = require(`./schemas/${schema}`)
     })
 }
 
