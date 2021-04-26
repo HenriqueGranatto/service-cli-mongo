@@ -1,9 +1,12 @@
 require('dotenv').config()
+const Models = {}
 const fs = require("fs")
 const path = require("path")
-const Models = require('./models')
 const mongoose = require('mongoose')
 
+/**
+ * Connect to Mongo server
+ */
 mongoose.connect(`mongodb://${process.env.MONGO_USER}:${process.env.MONGO_PASSWORD}@${process.env.MONGO_SERVER}?authSource=admin`, {useNewUrlParser: true, useUnifiedTopology: true})
 
 /**
@@ -19,4 +22,6 @@ const registerSchemas = () =>
     })
 }
 
-module.exports = registerSchemas()
+registerSchemas()
+
+module.exports = Models
