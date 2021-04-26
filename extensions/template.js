@@ -49,7 +49,7 @@ const createModule = async (toolbox) =>
     })
 
     toolbox.print.success("- Adicionando: configurações do módulo no arquivo .env")
-    let env = `# Configurações do MONGO\n`
+    let env = `# Configurações do Mongo\n`
     env += `MONGO_USER=\n`
     env += `MONGO_PASSWORD=\n`
     env += `MONGO_SERVER=\n\n`
