@@ -52,7 +52,7 @@ const createModule = async (toolbox) =>
     let env = `# Configurações do MONGO\n`
     env += `MONGO_USER=\n`
     env += `MONGO_PASSWORD=\n`
-    env += `MONGO_SERVER=`
+    env += `MONGO_SERVER=\n`
     toolbox.filesystem.append('.env', env)
 
     toolbox.print.success("- Adicionando: módulo no arquivo service.js")
