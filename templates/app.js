@@ -10,6 +10,11 @@ const mongoose = require('mongoose')
 mongoose.connect(`mongodb://${process.env.MONGO_USER}:${process.env.MONGO_PASSWORD}@${process.env.MONGO_SERVER}?authSource=admin`, {useNewUrlParser: true, useUnifiedTopology: true})
 
 /**
+ * Configure Mongoose connection
+ */
+ mongoose.set('useFindAndModify', false)
+
+/**
  * Include all schemas in path /schemas
  */
 const registerSchemas = () =>
